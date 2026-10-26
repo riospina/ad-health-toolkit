@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auditoría de Salud - Active Directory | CORP.EMPRESA.LOCAL</title>
+<title>Auditoría Avanzada de Seguridad - Active Directory | CORP.EMPRESA.LOCAL</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
@@ -28,7 +28,7 @@
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
   }
 
@@ -85,9 +85,10 @@
     margin-top: 4px;
   }
 
+  /* KPI Grid */
   .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
   }
@@ -110,15 +111,15 @@
   }
 
   .kpi-title {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   .kpi-val {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
     margin: 8px 0 4px 0;
   }
@@ -128,6 +129,7 @@
     color: var(--text-muted);
   }
 
+  /* Section cards */
   .section-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -141,10 +143,17 @@
     font-size: 18px;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.5;
   }
 
   table {
@@ -187,6 +196,7 @@
   .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
   .badge-success { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
 
+  /* CALL TO ACTION CONSULTING BOX */
   .cta-box {
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(99, 102, 241, 0.15) 100%);
     border: 1px solid rgba(14, 165, 233, 0.35);
@@ -206,7 +216,7 @@
   }
 
   .cta-desc {
-    max-width: 720px;
+    max-width: 780px;
     margin: 0 auto 24px auto;
     font-size: 14.5px;
     color: #cbd5e1;
@@ -266,48 +276,157 @@
 <body>
   <div class="container">
     
+    <!-- Header -->
     <div class="header-card">
       <div class="header-info">
-        <span class="domain-tag">DOMINIO: CORP.EMPRESA.LOCAL</span>
-        <h1>Informe de Diagnóstico de Active Directory</h1>
-        <p style="color: var(--text-muted); font-size: 13px;">Generado el 2026-10-25 12:12 | Criterio de inactividad: >90 días</p>
+        <span class="domain-tag">DOMINIO: CORP.EMPRESA.LOCAL | NIVEL FUNCIONAL: Windows Server 2016</span>
+        <h1>Informe de Auditoría y Seguridad de Active Directory</h1>
+        <p style="color: var(--text-muted); font-size: 13px;">Generado el 2026-10-26 12:56 | Criterio de inactividad: >90 días | Papelera AD: Habilitada (Proteccion activa ante borrados)</p>
       </div>
       <div class="score-badge">
-        <div class="score-number">42<span style="font-size: 22px;">/100</span></div>
+        <div class="score-number">15<span style="font-size: 22px;">/100</span></div>
         <div class="score-label">RIESGO CRITICO (ACCION REQUERIDA)</div>
       </div>
     </div>
 
+    <!-- KPI Grid (6 Métricas clave) -->
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-title">Usuarios Inactivos Habilitados</div>
-        <div class="kpi-val" style="color: #f87171;">5</div>
-        <div class="kpi-sub">De un total de 640 usuarios (0.8%)</div>
+        <div class="kpi-title">Seguridad Kerberos (krbtgt)</div>
+        <div class="kpi-val" style="color: #f87171;">485 d</div>
+        <div class="kpi-sub">Requiere Rotacion Urgente</div>
       </div>
 
       <div class="kpi-card">
         <div class="kpi-title">Cobertura Windows LAPS</div>
         <div class="kpi-val" style="color: #f87171;">8.8%</div>
-        <div class="kpi-sub">42 protegidos de 480 equipos</div>
+        <div class="kpi-sub">42 de 480 equipos</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Usuarios Inactivos Habilitados</div>
+        <div class="kpi-val" style="color: #f87171;">5</div>
+        <div class="kpi-sub">De 640 usuarios (0.8%)</div>
       </div>
 
       <div class="kpi-card">
         <div class="kpi-title">Domain Admins en Riesgo</div>
         <div class="kpi-val" style="color: #f87171;">2</div>
-        <div class="kpi-sub">4 cuentas con privilegios totales</div>
+        <div class="kpi-sub">4 con permisos totales</div>
       </div>
 
       <div class="kpi-card">
-        <div class="kpi-title">Contraseñas sin Expiración</div>
-        <div class="kpi-val" style="color: #fbbf24;">4</div>
-        <div class="kpi-sub">Cuentas con PasswordNeverExpires = True</div>
+        <div class="kpi-title">Cuentas con SPN (Kerberoast)</div>
+        <div class="kpi-val" style="color: #fbbf24;">3</div>
+        <div class="kpi-sub">Cuentas de usuario como servicio</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Controladores Fuera de Soporte</div>
+        <div class="kpi-val" style="color: #f87171;">1</div>
+        <div class="kpi-sub">De 3 servidores DC evaluados</div>
       </div>
     </div>
 
+    <!-- 1. Auditoría de la Cuenta krbtgt (Golden Ticket) -->
+    <div class="section-card">
+      <h2>🔑 Cuenta Clave Kerberos (krbtgt) & Riesgo 'Golden Ticket'</h2>
+      <p class="section-desc">
+        La cuenta <code>krbtgt</code> cifra los tickets Kerberos del dominio. Si su clave nunca se ha rotado o tiene más de 180 días, un atacante que obtenga su hash puede emitir Golden Tickets válidos por años. Las directivas de Microsoft exigen rotarla dos veces seguidas periódicamente.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Cuenta</th>
+            <th>Última Rotación de Clave</th>
+            <th>Días de Antigüedad</th>
+            <th>Diagnóstico de Seguridad</th>
+            <th>Acción Recomendada</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>krbtgt</strong></td><td>2025-06-28</td><td>485 dias</td><td><span class='badge badge-danger'>CRITICO (>180 dias sin rotacion)</span></td><td>Ejecutar doble rotacion coordinada con intervalo de replicacion</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2. Cuentas de Servicio & SPNs (Kerberoasting) -->
+    <div class="section-card">
+      <h2>🤖 Cuentas de Servicio con SPN (Riesgo de Kerberoasting) (3)</h2>
+      <p class="section-desc">
+        Cuentas de usuario convencionales registradas con <code>ServicePrincipalName</code> (SPN). Cualquier usuario autenticado en la red puede solicitar tickets TGS para estas cuentas y crackear sus contraseñas offline. Se recomienda migrarlas a <strong>gMSA (Group Managed Service Accounts)</strong>.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Cuenta de Servicio</th>
+            <th>Nombre / Descripción</th>
+            <th>SPNs Asociados</th>
+            <th>Último Cambio de Clave</th>
+            <th>Nivel de Riesgo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>svc_sql_prod</strong></td><td>Servicio Motor SQL Produccion</td><td><code style='font-size:12px; color:#38bdf8;'>MSSQLSvc/sql01.corp.empresa.local:1433</code></td><td>2025-02-23</td><td><span class='badge badge-danger'>CRITICO (Clave > 12 meses)</span></td></tr>
+<tr><td><strong>svc_iis_portal</strong></td><td>Pool IIS Portal Web Transaccional</td><td><code style='font-size:12px; color:#38bdf8;'>HTTP/portal.corp.empresa.local</code></td><td>2025-10-11</td><td><span class='badge badge-warning'>ALTO (Clave > 12 meses)</span></td></tr>
+<tr><td><strong>svc_powerbi_gw</strong></td><td>Gateway Power BI Corporativo</td><td><code style='font-size:12px; color:#38bdf8;'>MSSQLSvc/bi-report.empresa.local</code></td><td>2026-08-02</td><td><span class='badge badge-warning'>MEDIO (Migrar a gMSA)</span></td></tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. Ciclo de Vida y End-of-Life (EOL) de Controladores de Dominio -->
+    <div class="section-card">
+      <h2>🖥️ Controladores de Dominio & Ciclo de Vida Microsoft (EOL) (3)</h2>
+      <p class="section-desc">
+        Estado de comunicación y soporte oficial de los servidores que gestionan la identidad corporativa. Controladores con sistemas operativos fuera de soporte (EOL) carecen de parches contra vulnerabilidades críticas (Zerologon, PrintNightmare, etc.).
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Servidor DC</th>
+            <th>Dirección IP</th>
+            <th>Sistema Operativo</th>
+            <th>Fin de Soporte Oficial (EOL)</th>
+            <th>Estado de Ciclo de Vida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>DC01-MED</strong></td><td>192.168.10.10</td><td>Windows Server 2022 Datacenter</td><td><strong>14/10/2031</strong></td><td><span class='badge badge-success'>Soporte Vigente (Saludable)</span></td></tr>
+<tr><td><strong>DC02-BOG</strong></td><td>192.168.20.10</td><td>Windows Server 2019 Standard</td><td><strong>09/01/2029</strong></td><td><span class='badge badge-warning'>Soporte Extendido</span></td></tr>
+<tr><td><strong>DC03-CALI</strong></td><td>192.168.30.10</td><td>Windows Server 2012 R2 Datacenter</td><td><strong>10/10/2023</strong></td><td><span class='badge badge-danger'>Vencido / Sin Soporte</span></td></tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. Autoridades de Certificación del Dominio (AD CS / PKI) -->
+    <div class="section-card">
+      <h2>📜 Autoridades de Certificación Corporativas (AD CS / PKI) (1)</h2>
+      <p class="section-desc">
+        Estado y conectividad de las Autoridades de Certificación (CAs) del dominio verificadas mediante diagnóstico <code>certutil -ping</code>.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre de la CA</th>
+            <th>Servidor Host</th>
+            <th>Tipo de CA</th>
+            <th>Estado del Servicio (Ping)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>CORP-ROOT-CA</strong></td><td>CA01-MED.corp.empresa.local</td><td>Enterprise Root CA</td><td><span class='badge badge-success'>En Linea (Ping Certutil OK)</span></td></tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5. Usuarios Inactivos -->
     <div class="section-card">
       <h2>🛡️ Cuentas de Usuario Inactivas pero Habilitadas (5)</h2>
-      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 14px;">
-        Cuentas que no registran inicio de sesión en más de 90 días. Representan un vector principal de penetración para atacantes o exempleados.
+      <p class="section-desc">
+        Cuentas que no registran inicio de sesión en más de 90 días. Representan un vector principal de penetración para exempleados o credenciales filtradas.
       </p>
       <table>
         <thead>
@@ -320,20 +439,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>carlos.mendoza</strong></td><td>Carlos Mendoza</td><td>Auxiliar Operativo</td><td>2026-06-05</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
-<tr><td><strong>laura.gomez</strong></td><td>Laura Gomez</td><td>Analista Financiero</td><td>2026-03-29</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
-<tr><td><strong>admin.temp</strong></td><td>Admin Temporal Proveedor</td><td>Contratista Externo</td><td>2025-12-09</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
-<tr><td><strong>juan.perez</strong></td><td>Juan Perez</td><td>Soporte Tecnico</td><td>2026-07-02</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
-<tr><td><strong>andrea.ruiz</strong></td><td>Andrea Ruiz</td><td>Coordinadora Comercial</td><td>2026-07-19</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
+          <tr><td><strong>carlos.mendoza</strong></td><td>Carlos Mendoza</td><td>Auxiliar Operativo</td><td>2026-06-06</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
+<tr><td><strong>laura.gomez</strong></td><td>Laura Gomez</td><td>Analista Financiero</td><td>2026-03-30</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
+<tr><td><strong>admin.temp</strong></td><td>Admin Temporal Proveedor</td><td>Contratista Externo</td><td>2025-12-10</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
+<tr><td><strong>juan.perez</strong></td><td>Juan Perez</td><td>Soporte Tecnico</td><td>2026-07-03</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
+<tr><td><strong>andrea.ruiz</strong></td><td>Andrea Ruiz</td><td>Coordinadora Comercial</td><td>2026-07-20</td><td><span class='badge badge-danger'>Inactivo > 90 d</span></td></tr>
 
         </tbody>
       </table>
     </div>
 
+    <!-- 6. Domain Admins -->
     <div class="section-card">
       <h2>👑 Miembros del Grupo 'Domain Admins' (4)</h2>
-      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 14px;">
-        Cuentas con privilegios administrativos sobre todo el dominio. Ninguna cuenta administrativa debe permanecer inactiva o sin rotación de credenciales.
+      <p class="section-desc">
+        Cuentas con privilegios administrativos sobre todo el dominio. Ninguna cuenta administrativa debe permanecer inactiva o sin rotación estricta de credenciales.
       </p>
       <table>
         <thead>
@@ -345,15 +465,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>Administrator</strong></td><td>Administrador Nativo</td><td>2026-10-23</td><td><span class='badge badge-success'>Activo</span></td></tr>
-<tr><td><strong>admin.soporte</strong></td><td>Admin Soporte TI</td><td>2026-10-24</td><td><span class='badge badge-success'>Activo</span></td></tr>
-<tr><td><strong>admin.temp</strong></td><td>Admin Temporal Proveedor</td><td>2025-12-09</td><td><span class='badge badge-danger'>ALERTA: Inactivo</span></td></tr>
-<tr><td><strong>carlos.mendoza</strong></td><td>Carlos Mendoza (Ex-colaborador)</td><td>2026-06-05</td><td><span class='badge badge-danger'>ALERTA: Inactivo</span></td></tr>
+          <tr><td><strong>Administrator</strong></td><td>Administrador Nativo</td><td>2026-10-24</td><td><span class='badge badge-success'>Activo</span></td></tr>
+<tr><td><strong>admin.soporte</strong></td><td>Admin Soporte TI</td><td>2026-10-25</td><td><span class='badge badge-success'>Activo</span></td></tr>
+<tr><td><strong>admin.temp</strong></td><td>Admin Temporal Proveedor</td><td>2025-12-10</td><td><span class='badge badge-danger'>ALERTA: Inactivo</span></td></tr>
+<tr><td><strong>carlos.mendoza</strong></td><td>Carlos Mendoza (Ex-colaborador)</td><td>2026-06-06</td><td><span class='badge badge-danger'>ALERTA: Inactivo</span></td></tr>
 
         </tbody>
       </table>
     </div>
 
+    <!-- 7. Contraseñas que nunca expiran -->
     <div class="section-card">
       <h2>⚠️ Cuentas con Contraseñas que Nunca Expiran (4)</h2>
       <table>
@@ -366,29 +487,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>servicio.backup</strong></td><td>Cuenta Servicio Backup</td><td>2025-09-10</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
-<tr><td><strong>admin.temp</strong></td><td>Admin Temporal Proveedor</td><td>2025-12-09</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
-<tr><td><strong>gerencia.general</strong></td><td>Gerente General</td><td>2025-05-13</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
-<tr><td><strong>impresora.scanner</strong></td><td>Scanner Corporativo</td><td>2025-03-04</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
-
-        </tbody>
-      </table>
-    </div>
-
-    <div class="section-card">
-      <h2>🖥️ Estado de Controladores de Dominio (2)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Servidor DC</th>
-            <th>Dirección IP</th>
-            <th>Sistema Operativo</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>DC01-MED</strong></td><td>192.168.10.10</td><td>Windows Server 2022 Datacenter</td><td><span class='badge badge-success'>En Linea (Saludable)</span></td></tr>
-<tr><td><strong>DC02-BOG</strong></td><td>192.168.20.10</td><td>Windows Server 2019 Standard</td><td><span class='badge badge-success'>En Linea (Saludable)</span></td></tr>
+          <tr><td><strong>servicio.backup</strong></td><td>Cuenta Servicio Backup</td><td>2025-09-11</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
+<tr><td><strong>admin.temp</strong></td><td>Admin Temporal Proveedor</td><td>2025-12-10</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
+<tr><td><strong>gerencia.general</strong></td><td>Gerente General</td><td>2025-05-14</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
+<tr><td><strong>impresora.scanner</strong></td><td>Scanner Corporativo</td><td>2025-03-05</td><td><span class='badge badge-warning'>Sin Expiracion</span></td></tr>
 
         </tbody>
       </table>
@@ -396,10 +498,10 @@
 
     <!-- CALL TO ACTION / VENTA DE SERVICIOS -->
     <div class="cta-box">
-      <div class="cta-title">¿Necesitas resolver estos hallazgos o implementar Windows LAPS?</div>
+      <div class="cta-title">¿Necesitas resolver estos hallazgos, rotar krbtgt o implementar LAPS?</div>
       <p class="cta-desc">
-        La remediación manual de cuentas inactivas y la implementación incorrecta de directivas GPO pueden causar interrupción de servicios y pérdida de acceso administrativo. 
-        Puedo ayudarte a implementar Windows LAPS nativo, sanear tu Active Directory y asegurar tus servidores sin riesgos operativos.
+        La remediación manual de cuentas de servicio, rotación de claves Kerberos e implementación de LAPS requieren experiencia para no interrumpir operaciones de negocio.
+        Puedo ayudarte a sanear tu Active Directory, migrar a gMSA y blindar tus servidores sin riesgos de caída.
       </p>
       
       <div class="expert-pill">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auditoría de Salud - Active Directory | {{DOMAIN}}</title>
+<title>Auditoría Avanzada de Seguridad - Active Directory | {{DOMAIN}}</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
@@ -28,7 +28,7 @@
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1240px;
     margin: 0 auto;
   }
 
@@ -85,9 +85,10 @@
     margin-top: 4px;
   }
 
+  /* KPI Grid */
   .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
   }
@@ -110,15 +111,15 @@
   }
 
   .kpi-title {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   .kpi-val {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
     margin: 8px 0 4px 0;
   }
@@ -128,6 +129,7 @@
     color: var(--text-muted);
   }
 
+  /* Section cards */
   .section-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -141,10 +143,17 @@
     font-size: 18px;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.5;
   }
 
   table {
@@ -187,6 +196,7 @@
   .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
   .badge-success { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
 
+  /* CALL TO ACTION CONSULTING BOX */
   .cta-box {
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(99, 102, 241, 0.15) 100%);
     border: 1px solid rgba(14, 165, 233, 0.35);
@@ -206,7 +216,7 @@
   }
 
   .cta-desc {
-    max-width: 720px;
+    max-width: 780px;
     margin: 0 auto 24px auto;
     font-size: 14.5px;
     color: #cbd5e1;
@@ -266,11 +276,12 @@
 <body>
   <div class="container">
     
+    <!-- Header -->
     <div class="header-card">
       <div class="header-info">
-        <span class="domain-tag">DOMINIO: {{DOMAIN}}</span>
-        <h1>Informe de Diagnóstico de Active Directory</h1>
-        <p style="color: var(--text-muted); font-size: 13px;">Generado el {{DATE}} | Criterio de inactividad: >{{DAYS_INACTIVE}} días</p>
+        <span class="domain-tag">DOMINIO: {{DOMAIN}} | NIVEL FUNCIONAL: {{FUNCTIONAL_LEVEL}}</span>
+        <h1>Informe de Auditoría y Seguridad de Active Directory</h1>
+        <p style="color: var(--text-muted); font-size: 13px;">Generado el {{DATE}} | Criterio de inactividad: >{{DAYS_INACTIVE}} días | Papelera AD: {{RECYCLE_BIN_STATUS}}</p>
       </div>
       <div class="score-badge">
         <div class="score-number">{{SCORE}}<span style="font-size: 22px;">/100</span></div>
@@ -278,36 +289,137 @@
       </div>
     </div>
 
+    <!-- KPI Grid (6 Métricas clave) -->
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-title">Usuarios Inactivos Habilitados</div>
-        <div class="kpi-val" style="color: #f87171;">{{COUNT_INACTIVE_USERS}}</div>
-        <div class="kpi-sub">De un total de {{TOTAL_USERS}} usuarios ({{PCT_INACTIVE_USERS}}%)</div>
+        <div class="kpi-title">Seguridad Kerberos (krbtgt)</div>
+        <div class="kpi-val" style="color: {{KRBTGT_COLOR}};">{{KRBTGT_DAYS}} d</div>
+        <div class="kpi-sub">{{KRBTGT_STATUS}}</div>
       </div>
 
       <div class="kpi-card">
         <div class="kpi-title">Cobertura Windows LAPS</div>
         <div class="kpi-val" style="color: {{LAPS_COLOR}};">{{LAPS_COVERAGE}}%</div>
-        <div class="kpi-sub">{{TOTAL_LAPS_ENABLED}} protegidos de {{TOTAL_COMPUTERS}} equipos</div>
+        <div class="kpi-sub">{{TOTAL_LAPS_ENABLED}} de {{TOTAL_COMPUTERS}} equipos</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Usuarios Inactivos Habilitados</div>
+        <div class="kpi-val" style="color: #f87171;">{{COUNT_INACTIVE_USERS}}</div>
+        <div class="kpi-sub">De {{TOTAL_USERS}} usuarios ({{PCT_INACTIVE_USERS}}%)</div>
       </div>
 
       <div class="kpi-card">
         <div class="kpi-title">Domain Admins en Riesgo</div>
         <div class="kpi-val" style="color: {{DA_COLOR}};">{{INACTIVE_DAS}}</div>
-        <div class="kpi-sub">{{COUNT_DOMAIN_ADMINS}} cuentas con privilegios totales</div>
+        <div class="kpi-sub">{{COUNT_DOMAIN_ADMINS}} con permisos totales</div>
       </div>
 
       <div class="kpi-card">
-        <div class="kpi-title">Contraseñas sin Expiración</div>
-        <div class="kpi-val" style="color: #fbbf24;">{{COUNT_PWD_NEVER}}</div>
-        <div class="kpi-sub">Cuentas con PasswordNeverExpires = True</div>
+        <div class="kpi-title">Cuentas con SPN (Kerberoast)</div>
+        <div class="kpi-val" style="color: {{SPN_COLOR}};">{{COUNT_SPN_USERS}}</div>
+        <div class="kpi-sub">Cuentas de usuario como servicio</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">Controladores Fuera de Soporte</div>
+        <div class="kpi-val" style="color: {{DC_EOL_COLOR}};">{{COUNT_EOL_DCS}}</div>
+        <div class="kpi-sub">De {{COUNT_DCS}} servidores DC evaluados</div>
       </div>
     </div>
 
+    <!-- 1. Auditoría de la Cuenta krbtgt (Golden Ticket) -->
+    <div class="section-card">
+      <h2>🔑 Cuenta Clave Kerberos (krbtgt) & Riesgo 'Golden Ticket'</h2>
+      <p class="section-desc">
+        La cuenta <code>krbtgt</code> cifra los tickets Kerberos del dominio. Si su clave nunca se ha rotado o tiene más de 180 días, un atacante que obtenga su hash puede emitir Golden Tickets válidos por años. Las directivas de Microsoft exigen rotarla dos veces seguidas periódicamente.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Cuenta</th>
+            <th>Última Rotación de Clave</th>
+            <th>Días de Antigüedad</th>
+            <th>Diagnóstico de Seguridad</th>
+            <th>Acción Recomendada</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{KRBTGT_TABLE}}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2. Cuentas de Servicio & SPNs (Kerberoasting) -->
+    <div class="section-card">
+      <h2>🤖 Cuentas de Servicio con SPN (Riesgo de Kerberoasting) ({{COUNT_SPN_USERS}})</h2>
+      <p class="section-desc">
+        Cuentas de usuario convencionales registradas con <code>ServicePrincipalName</code> (SPN). Cualquier usuario autenticado en la red puede solicitar tickets TGS para estas cuentas y crackear sus contraseñas offline. Se recomienda migrarlas a <strong>gMSA (Group Managed Service Accounts)</strong>.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Cuenta de Servicio</th>
+            <th>Nombre / Descripción</th>
+            <th>SPNs Asociados</th>
+            <th>Último Cambio de Clave</th>
+            <th>Nivel de Riesgo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{SPN_TABLE}}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. Ciclo de Vida y End-of-Life (EOL) de Controladores de Dominio -->
+    <div class="section-card">
+      <h2>🖥️ Controladores de Dominio & Ciclo de Vida Microsoft (EOL) ({{COUNT_DCS}})</h2>
+      <p class="section-desc">
+        Estado de comunicación y soporte oficial de los servidores que gestionan la identidad corporativa. Controladores con sistemas operativos fuera de soporte (EOL) carecen de parches contra vulnerabilidades críticas (Zerologon, PrintNightmare, etc.).
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Servidor DC</th>
+            <th>Dirección IP</th>
+            <th>Sistema Operativo</th>
+            <th>Fin de Soporte Oficial (EOL)</th>
+            <th>Estado de Ciclo de Vida</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{DCS_TABLE}}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. Autoridades de Certificación del Dominio (AD CS / PKI) -->
+    <div class="section-card">
+      <h2>📜 Autoridades de Certificación Corporativas (AD CS / PKI) ({{COUNT_CAS}})</h2>
+      <p class="section-desc">
+        Estado y conectividad de las Autoridades de Certificación (CAs) del dominio verificadas mediante diagnóstico <code>certutil -ping</code>.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre de la CA</th>
+            <th>Servidor Host</th>
+            <th>Tipo de CA</th>
+            <th>Estado del Servicio (Ping)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{CAS_TABLE}}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5. Usuarios Inactivos -->
     <div class="section-card">
       <h2>🛡️ Cuentas de Usuario Inactivas pero Habilitadas ({{COUNT_INACTIVE_USERS}})</h2>
-      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 14px;">
-        Cuentas que no registran inicio de sesión en más de {{DAYS_INACTIVE}} días. Representan un vector principal de penetración para atacantes o exempleados.
+      <p class="section-desc">
+        Cuentas que no registran inicio de sesión en más de {{DAYS_INACTIVE}} días. Representan un vector principal de penetración para exempleados o credenciales filtradas.
       </p>
       <table>
         <thead>
@@ -325,10 +437,11 @@
       </table>
     </div>
 
+    <!-- 6. Domain Admins -->
     <div class="section-card">
       <h2>👑 Miembros del Grupo 'Domain Admins' ({{COUNT_DOMAIN_ADMINS}})</h2>
-      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 14px;">
-        Cuentas con privilegios administrativos sobre todo el dominio. Ninguna cuenta administrativa debe permanecer inactiva o sin rotación de credenciales.
+      <p class="section-desc">
+        Cuentas con privilegios administrativos sobre todo el dominio. Ninguna cuenta administrativa debe permanecer inactiva o sin rotación estricta de credenciales.
       </p>
       <table>
         <thead>
@@ -345,6 +458,7 @@
       </table>
     </div>
 
+    <!-- 7. Contraseñas que nunca expiran -->
     <div class="section-card">
       <h2>⚠️ Cuentas con Contraseñas que Nunca Expiran ({{COUNT_PWD_NEVER}})</h2>
       <table>
@@ -362,29 +476,12 @@
       </table>
     </div>
 
-    <div class="section-card">
-      <h2>🖥️ Estado de Controladores de Dominio ({{COUNT_DCS}})</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Servidor DC</th>
-            <th>Dirección IP</th>
-            <th>Sistema Operativo</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{DCS_TABLE}}
-        </tbody>
-      </table>
-    </div>
-
     <!-- CALL TO ACTION / VENTA DE SERVICIOS -->
     <div class="cta-box">
-      <div class="cta-title">¿Necesitas resolver estos hallazgos o implementar Windows LAPS?</div>
+      <div class="cta-title">¿Necesitas resolver estos hallazgos, rotar krbtgt o implementar LAPS?</div>
       <p class="cta-desc">
-        La remediación manual de cuentas inactivas y la implementación incorrecta de directivas GPO pueden causar interrupción de servicios y pérdida de acceso administrativo. 
-        Puedo ayudarte a implementar Windows LAPS nativo, sanear tu Active Directory y asegurar tus servidores sin riesgos operativos.
+        La remediación manual de cuentas de servicio, rotación de claves Kerberos e implementación de LAPS requieren experiencia para no interrumpir operaciones de negocio.
+        Puedo ayudarte a sanear tu Active Directory, migrar a gMSA y blindar tus servidores sin riesgos de caída.
       </p>
       
       <div class="expert-pill">
