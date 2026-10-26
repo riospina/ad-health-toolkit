@@ -1,0 +1,11 @@
+# Ignorar reportes generados con datos reales de clientes
+reports/AD_Health_Report_*.html
+
+# Conservar el reporte de ejemplo
+!reports/Reporte_Ejemplo_Auditoria_AD.html
+
+# Temporales y caches de Windows / PowerShell
+*.tmp
+*.log
+.vscode/
+.idea/
