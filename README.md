@@ -30,7 +30,7 @@ Genera un **Dashboard Ejecutivo interactivo en HTML** con una puntuación de rie
 
 ### 1. Clonar el repositorio
 ```powershell
-git clone https://github.com/tu-usuario/ad-health-toolkit.git
+git clone https://github.com/riospina/ad-health-toolkit.git
 cd ad-health-toolkit\src
 ```
 
